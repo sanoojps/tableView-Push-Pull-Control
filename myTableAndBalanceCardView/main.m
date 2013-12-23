@@ -12,7 +12,21 @@
 
 int main(int argc, char * argv[])
 {
+    int retVal = -1;
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([CQAppDelegate class]));
+        @try {
+            //
+            retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([CQAppDelegate class]));
+        }
+        @catch (NSException *exception) {
+            //handler
+            NSLog(@"%@\n",[exception description]);
+            NSLog(@"%@\n",[exception callStackSymbols]);
+        }
+        @finally {
+            //statements
+            return retVal;
+        }
+        
     }
 }

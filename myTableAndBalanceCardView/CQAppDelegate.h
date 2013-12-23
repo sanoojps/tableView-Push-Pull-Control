@@ -9,7 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface CQAppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+{
+    UIWindow *window;
+    UINavigationController *navigationController;
+}
+@property (retain, nonatomic) UIWindow *window;
+@property (nonatomic, retain) UINavigationController *navigationController;
 
 @end

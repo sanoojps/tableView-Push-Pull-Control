@@ -8,13 +8,38 @@
 
 #import "CQAppDelegate.h"
 
+#import "CQBalanceCardVC.h"
+
 @implementation CQAppDelegate
+
+@synthesize window;
+@synthesize navigationController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    //MainView Controller
+    CQBalanceCardVC* CQBalanceCard_VC = nil;
+    CQBalanceCard_VC = [[CQBalanceCardVC alloc]init];
+    
+    //NavigationCOntroller
+    UINavigationController* navigation_Controller = nil;
+    navigation_Controller = [[UINavigationController alloc]initWithRootViewController:CQBalanceCard_VC];
+    
+    //add Navigation COntroller as the root view Controller
+    [[self window]setRootViewController:navigation_Controller];
+    
+    //[window addSubview:navigationController.view];
+    
+    //Release main VC
+    [CQBalanceCard_VC release];
+    //Release navigation_Controller
+    [navigation_Controller release];
+    
+    //make window visible
     [self.window makeKeyAndVisible];
     return YES;
 }
@@ -46,4 +71,14 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+
+
+- (void)dealloc
+{
+    //deallocations
+    [super dealloc];
+    
+    [window release];
+    
+}
 @end
